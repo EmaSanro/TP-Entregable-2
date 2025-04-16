@@ -29,3 +29,14 @@ canvas.addEventListener('mouseup', () => {
 })
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+function main() {
+    dibujarCanvas();
+}
+
+function dibujarCanvas() {
+    ctx.beginPath();
+    ctx.rect(0, 0, canvas.width, canvas.height);
+    ctx.stroke();
+    ctx.closePath();
+}

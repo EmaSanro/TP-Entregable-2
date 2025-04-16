@@ -7,8 +7,31 @@
     <link rel="stylesheet" href="style.css">
     
 </head>
-<body>
-    <canvas id="canvas" width='1280' height='720'></canvas>
+<body onload='main()'>
+    <main id='main'>
+        <div class='tools'>
+            <section class='sectionLeft'>
+                <div class="fileTools">
+                    <input type="file" name="file" id="inputFile" />
+                    <button class='btn' id='save' type="button">Guardar</button>
+                    <button class='btn' id='' type="button">Descartar</button>
+                </div>
+            </section>
+            <section class='sectionRight'>
+                <p>Herramientas</p>
+                <nav>
+                    <ul>
+                        <li class='items' id='lapiz'><img title='Lapiz' src="Images/lapiz.png" alt="Lapiz" draggable='false'></li>
+                        <li class='items' id='fibra'><img title='Fibra' src="Images/marcador.png" alt="fibra" draggable='false'></li>
+                        <li class='items' id='goma'><img title='Goma' src="Images/goma.png" alt="goma" draggable='false'></li>
+                    </ul>
+                </nav>
+            </section>
+        </div>
+        <div class='center'>
+            <canvas id="canvas" width='900' height='550'></canvas>
+        </div>
+    </main>
     <script src="JS/Pen.js"></script>
     <script src="JS/main.js"></script>
 </body>
