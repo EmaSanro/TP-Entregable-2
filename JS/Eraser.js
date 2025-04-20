@@ -1,7 +1,8 @@
 class Eraser {
-    constructor(posX, posY, ctx) {
+    constructor(posX, posY, size, ctx) {
         this.posX = posX;
         this.posY = posY;
+        this.size = size;
         this.ctx = ctx;
     }
 
@@ -10,15 +11,17 @@ class Eraser {
         this.posY = y;
     }
 
+    setSize(size) {
+        this.size = size;    
+    }
+
     moveTo(x, y) {
-        this.antX = this.posX;
-        this.antY = this.posY;
         this.posX = x;
         this.posY = y;
     }
 
     delete() {
-        this.ctx.clearRect(this.posX, this.posY, 10, 10);
+        this.ctx.clearRect(this.posX, this.posY, this.size, this.size);
         this.ctx.beginPath();
     }
 

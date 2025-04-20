@@ -64,6 +64,9 @@ p {
     box-shadow: inset 1px 1px 5px #555;
 }
 
+.toolActive {
+    box-shadow: inset 1px 1px 5px #555;
+}
 
 .center {
     display: flex;

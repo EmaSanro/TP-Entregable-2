@@ -4,20 +4,27 @@ const ctx = canvas.getContext("2d");
 const inputFile = document.getElementById('inputFile');
 const btnDescartar = document.getElementById('discard');
 const btnGuardar = document.getElementById('save');
+const btnPencil = document.getElementById('lapiz');
+const btnGoma = document.getElementById('goma');
+const sizeGoma = document.getElementById('range');
 
 let mouseDown = false;
-let pencil = new Pen(0, 0, ctx, 'black');
-let eraser = new Eraser(0, 0, ctx);
+let pencil = null;
+let eraser = null;
 let imagen = null
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //  EVENTOS
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+btnPencil.addEventListener('click', crearLapiz); //AL CLICKEAR EN EL BOTON DEL LAPIZ, SE CREA EL OBJETO PARA EMPEZAR A DIBUJAR
+btnGoma.addEventListener('click', crearGoma); // AL CLICKEAR EN LA GOMA SE CREA EL OBJETO PARA BORRAR
+
 // CUANDO SE PRESIONE EL MOUSE, SE CREARA UN LAPIZ
 canvas.addEventListener('mousedown', (e) => {
     if(pencil != null) {
         pencil.setXY(e.offsetX, e.offsetY);
+    } else if(eraser != null) {
         eraser.setXY(e.offsetX, e.offsetY);
     }
     mouseDown = true;
@@ -46,7 +53,12 @@ inputFile.addEventListener('change', (e) => {
     imagen.cargarImagen(e.target.files[0]);
 });
 
-
+sizeGoma.addEventListener('change', () => {
+    if(eraser == null) {
+        crearGoma();
+    }
+    eraser.setSize(sizeGoma.value);
+})
 
 
 
@@ -77,6 +89,30 @@ function limpiarCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.closePath();
     dibujarCanvas();
+}
+
+function crearLapiz() {
+    if(pencil == null) {
+        eraser = null;
+        btnGoma.classList.remove('toolActive');
+        btnPencil.classList.add('toolActive');
+        pencil = new Pen(0, 0, ctx, 'black');
+    } else {
+        pencil = null;
+        btnPencil.classList.remove('toolActive');
+    }
+}
+
+function crearGoma() {
+    if(eraser == null) {
+        pencil = null;
+        btnPencil.classList.remove('toolActive');
+        btnGoma.classList.add('toolActive');
+        eraser = new Eraser(0, 0, sizeGoma.value, ctx);
+    }else {
+        eraser = null;
+        btnGoma.classList.remove('toolActive');
+    }
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
