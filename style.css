@@ -10,6 +10,10 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+canvas {
+    background-color: #fff;
+}
+
 p {
     margin: 0;
 }
@@ -43,29 +47,48 @@ p {
 
 .sectionRight, .sectionRight nav ul {
     margin: 0;
+    padding: 0;
     display: flex;
-    column-gap: 35px;
+    column-gap: 15px;
     list-style-type: none;
 }
 
-.sectionRight nav ul li {
+.sectionRight nav ul .items {
     border-radius: 3px;
     padding: 3px;
     transition: ease .3s;
 }
 
-.sectionRight nav ul li:hover {
-    scale: 1.3;
+.sectionRight nav ul .items:hover {
+    scale: 1.2;
     cursor: pointer;
     box-shadow: 1px 1px 5px #444;
 }
 
-.sectionRight nav ul li:active {
+.sectionRight nav ul .items:active {
     box-shadow: inset 1px 1px 5px #555;
 }
 
-.toolActive {
-    box-shadow: inset 1px 1px 5px #555;
+.color-pallete {
+    background-color: #92e3fa;
+    border-radius: 6px;
+    max-width: 300px;
+    flex-wrap: wrap;
+}
+
+.colors:hover, #color-wheel {
+    cursor: pointer;
+}
+
+.colors:active {
+    box-shadow: inset 1px 1px 3px #777;
+}
+
+#color-wheel {
+    background-color: #ddd;
+    border: none;
+    width: 70px;
+    border-radius: 10px;
 }
 
 .center {
@@ -74,6 +97,14 @@ p {
     margin-top: 40px;
 }
 
-canvas {
-    background-color: #fff;
+.toolActive {
+    box-shadow: inset 1px 1px 5px #555;
+}
+
+.cursorLapiz {
+    cursor: url('Images/lapiz.png'), auto;
+}
+
+.cursorGoma {
+    cursor: url('Images/goma.png'), auto;
 }

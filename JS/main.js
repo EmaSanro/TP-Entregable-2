@@ -7,6 +7,8 @@ const btnGuardar = document.getElementById('save');
 const btnPencil = document.getElementById('lapiz');
 const btnGoma = document.getElementById('goma');
 const sizeGoma = document.getElementById('range');
+const colors = document.querySelectorAll('.colors');
+const colorWheel = document.getElementById('color-wheel');
 
 let mouseDown = false;
 let pencil = null;
@@ -60,11 +62,19 @@ sizeGoma.addEventListener('change', () => {
     eraser.setSize(sizeGoma.value);
 })
 
+for (const color of colors) {
+    color.addEventListener('click', () => {
+        if(pencil != null) {
+            pencil.setColor(color.getAttribute('value'));
+        }
+    });
+}
 
-
-
-
-
+colorWheel.addEventListener('change', (e) => {
+    if(pencil != null) {
+        pencil.setColor(colorWheel.value);
+    }
+})
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -96,10 +106,13 @@ function crearLapiz() {
         eraser = null;
         btnGoma.classList.remove('toolActive');
         btnPencil.classList.add('toolActive');
+        canvas.classList.add('cursorLapiz');
+        canvas.classList.remove('cursorGoma');
         pencil = new Pen(0, 0, ctx, 'black');
     } else {
         pencil = null;
         btnPencil.classList.remove('toolActive');
+        canvas.classList.remove('cursorLapiz');
     }
 }
 
@@ -108,10 +121,13 @@ function crearGoma() {
         pencil = null;
         btnPencil.classList.remove('toolActive');
         btnGoma.classList.add('toolActive');
+        canvas.classList.remove('cursorLapiz');
+        canvas.classList.add('cursorGoma');
         eraser = new Eraser(0, 0, sizeGoma.value, ctx);
     }else {
         eraser = null;
         btnGoma.classList.remove('toolActive');
+        canvas.classList.remove('cursorGoma');
     }
 }
 
