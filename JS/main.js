@@ -1,12 +1,16 @@
 /** @type {HTMLCanvasElement} */
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const inputFile = document.getElementById('inputFile');
+const btnDescartar = document.getElementById('discard');
+const btnGuardar = document.getElementById('save');
 
 let mouseDown = false;
 let pencil = new Pen(0, 0, ctx, 'black');
+let imagen = null
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//  EVENTOS DEL MOUSE
+//  EVENTOS
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // CUANDO SE PRESIONE EL MOUSE, SE CREARA UN LAPIZ
@@ -28,10 +32,30 @@ canvas.addEventListener('mouseup', () => {
     mouseDown = false;
 })
 
+btnDescartar.addEventListener('click', descartar); // CUANDO SE HAGA CLICK EN EL BOTON DESCARTAR, SE LIMPIARA TODO EL CANVAS
+
+inputFile.addEventListener('change', (e) => {
+    limpiarCanvas();
+    imagen.cargarImagen(e.target.files[0]);
+});
+
+
+
+
+
+
+
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// FUNCIONES PRINCIPALES
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function main() {
     dibujarCanvas();
+    imagen = new Imagen(ctx, canvas.width, canvas.height);
 }
 
 function dibujarCanvas() {
@@ -39,4 +63,18 @@ function dibujarCanvas() {
     ctx.rect(0, 0, canvas.width, canvas.height);
     ctx.stroke();
     ctx.closePath();
+}
+
+function limpiarCanvas() {
+    ctx.beginPath();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.closePath();
+    dibujarCanvas();
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+function descartar() {
+    limpiarCanvas();
+    inputFile.value = '';
 }
