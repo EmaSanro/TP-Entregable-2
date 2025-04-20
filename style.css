@@ -97,6 +97,46 @@ p {
     margin-top: 40px;
 }
 
+.container {
+    display: flex;
+    column-gap: 20px;
+}
+
+.aside {
+    margin: 40px 0 0 20px;
+    background-color: var(--secondary-color);
+    width: 300px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.aside h2 {
+    color: #fff;
+    text-shadow: 1px 1px 3px #333;
+}
+
+.lista-filtros {
+    list-style: none;
+    padding: 0;
+}
+
+.lista-filtros li button {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    margin-bottom: 20px;
+    width: 200px;
+    padding: 10px;
+    border: none;
+    background-color: #fff;
+    border-radius: 15px;
+    transition: ease .2s;
+}
+
+.lista-filtros li button:hover {
+    cursor: pointer;
+    background-color: #eee;
+}
+
 .toolActive {
     box-shadow: inset 1px 1px 5px #555;
 }

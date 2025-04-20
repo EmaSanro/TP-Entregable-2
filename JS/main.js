@@ -19,6 +19,8 @@ let imagen = null
 //  EVENTOS
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+btnDescartar.addEventListener('click', descartar); // CUANDO SE HAGA CLICK EN EL BOTON DESCARTAR, SE LIMPIARA TODO EL CANVAS
+
 btnPencil.addEventListener('click', crearLapiz); //AL CLICKEAR EN EL BOTON DEL LAPIZ, SE CREA EL OBJETO PARA EMPEZAR A DIBUJAR
 btnGoma.addEventListener('click', crearGoma); // AL CLICKEAR EN LA GOMA SE CREA EL OBJETO PARA BORRAR
 
@@ -48,7 +50,6 @@ canvas.addEventListener('mouseup', () => {
     mouseDown = false;
 })
 
-btnDescartar.addEventListener('click', descartar); // CUANDO SE HAGA CLICK EN EL BOTON DESCARTAR, SE LIMPIARA TODO EL CANVAS
 
 inputFile.addEventListener('change', (e) => {
     limpiarCanvas();
@@ -89,6 +90,7 @@ function main() {
 
 function dibujarCanvas() {
     ctx.beginPath();
+    ctx.strokeStyle = 'black';
     ctx.rect(0, 0, canvas.width, canvas.height);
     ctx.stroke();
     ctx.closePath();
