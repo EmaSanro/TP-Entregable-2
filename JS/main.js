@@ -7,6 +7,7 @@ const btnGuardar = document.getElementById('save');
 
 let mouseDown = false;
 let pencil = new Pen(0, 0, ctx, 'black');
+let eraser = new Eraser(0, 0, ctx);
 let imagen = null
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -15,7 +16,10 @@ let imagen = null
 
 // CUANDO SE PRESIONE EL MOUSE, SE CREARA UN LAPIZ
 canvas.addEventListener('mousedown', (e) => {
-    pencil.setXY(e.offsetX, e.offsetY);
+    if(pencil != null) {
+        pencil.setXY(e.offsetX, e.offsetY);
+        eraser.setXY(e.offsetX, e.offsetY);
+    }
     mouseDown = true;
 })
 
@@ -24,6 +28,9 @@ canvas.addEventListener('mousemove', (e) => {
     if(mouseDown && pencil != null) {
         pencil.moveTo(e.offsetX, e.offsetY);
         pencil.draw();
+    } else if(mouseDown && eraser != null) {
+        eraser.moveTo(e.offsetX, e.offsetY);
+        eraser.delete();
     }
 })
 
