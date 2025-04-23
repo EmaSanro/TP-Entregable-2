@@ -22,6 +22,6 @@ class FiltroSimple {
     }
 
     setPixel(i, data, r, g, b, a){
-
+        // METODO ABSTRACTO, CADA FILTRO SABE COMO SETEAR CADA PIXEL
     }
 }

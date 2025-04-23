@@ -15,10 +15,6 @@ class Imagen {
         return this.imageData;
     }
 
-    estaCargada() {
-        return this.cargada;
-    }
-
     cargarImagen(file) {
         // TERMINAR LA FUNCIONALIDAD DE CARGAR UNA IMAGEN Y DIBUJARLA
         let orgWidth = this.width;

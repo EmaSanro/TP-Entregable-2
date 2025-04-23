@@ -104,6 +104,10 @@ for (const filtro of filtros) {
                 let escalaGrises = new EscalaGrises(ctx, imagen.getImageData(), canvas.width, canvas.height);
                 escalaGrises.aplicarFiltro();
             };break;
+            case 'negativo': {
+                let negativo = new Negativo(ctx, imagen.getImageData(), canvas.width, canvas.height);
+                negativo.aplicarFiltro();
+            };break;
         }
     });
 }
