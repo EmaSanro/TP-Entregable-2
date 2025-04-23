@@ -108,6 +108,10 @@ for (const filtro of filtros) {
                 let negativo = new Negativo(ctx, imagen.getImageData(), canvas.width, canvas.height);
                 negativo.aplicarFiltro();
             };break;
+            case 'brillo': {
+                let brillo = new Brillo(ctx, imagen.getImageData(), canvas.width, canvas.height);
+                brillo.aplicarFiltro();
+            };break;
         }
     });
 }
