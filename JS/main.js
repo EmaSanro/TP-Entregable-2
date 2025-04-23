@@ -20,6 +20,7 @@ let imagen = null
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 btnDescartar.addEventListener('click', descartar); // CUANDO SE HAGA CLICK EN EL BOTON DESCARTAR, SE LIMPIARA TODO EL CANVAS
+btnGuardar.addEventListener('click', guardar);
 
 btnPencil.addEventListener('click', crearLapiz); //AL CLICKEAR EN EL BOTON DEL LAPIZ, SE CREA EL OBJETO PARA EMPEZAR A DIBUJAR
 btnGoma.addEventListener('click', crearGoma); // AL CLICKEAR EN LA GOMA SE CREA EL OBJETO PARA BORRAR
@@ -47,6 +48,10 @@ canvas.addEventListener('mousemove', (e) => {
 
 // UNA VEZ SUELTO EL CLICK SE DEJARA DE DIBUJAR Y SE DESTRUIRA EL LAPIZ
 canvas.addEventListener('mouseup', () => {
+    mouseDown = false;
+})
+
+canvas.addEventListener('mouseleave', () => {
     mouseDown = false;
 })
 
@@ -131,6 +136,17 @@ function crearGoma() {
         btnGoma.classList.remove('toolActive');
         canvas.classList.remove('cursorGoma');
     }
+}
+
+function guardar() {
+    const imageData = canvas.toDataURL('image/png');
+
+    const link = document.createElement('a');
+    link.download = 'my-canvas.png';
+    link.href = imageData;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
