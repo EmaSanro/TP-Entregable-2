@@ -26,6 +26,9 @@ class Pen {
 
     draw() {
         this.ctx.beginPath();
+        this.ctx.lineWidth = 1;
+        this.ctx.lineJoin = 'miter';
+        this.ctx.lineCap = 'butt';
         this.ctx.strokeStyle = this.color;
         this.ctx.moveTo(this.antX, this.antY);
         this.ctx.lineTo(this.posX, this.posY);

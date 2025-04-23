@@ -148,3 +148,7 @@ p {
 .cursorGoma {
     cursor: url('Images/goma.png'), auto;
 }
+
+.cursorFibron {
+    cursor: url('Images/marcador.png'), auto;
+}
