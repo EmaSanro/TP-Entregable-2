@@ -7,6 +7,18 @@ class Imagen {
         this.imageData = null;
     }
 
+    setImageData(imageData) {
+        this.imageData = imageData;
+    }
+
+    getImageData() {
+        return this.imageData;
+    }
+
+    estaCargada() {
+        return this.cargada;
+    }
+
     cargarImagen(file) {
         // TERMINAR LA FUNCIONALIDAD DE CARGAR UNA IMAGEN Y DIBUJARLA
         let orgWidth = this.width;
@@ -27,8 +39,8 @@ class Imagen {
                 resWidth = resHeight * aspectRatio;
             }
 
-
             ctx.drawImage(this, 0, 0, resWidth, resHeight);
         }
+        this.cargada = true;
     }
 }

@@ -10,6 +10,7 @@ const btnGoma = document.getElementById('goma');
 const sizeGoma = document.getElementById('range');
 const colors = document.querySelectorAll('.colors');
 const colorWheel = document.getElementById('color-wheel');
+const filtros = document.querySelectorAll('.filtros');
 
 let mouseDown = false;
 let pencil = null;
@@ -94,6 +95,18 @@ colorWheel.addEventListener('change', () => {
         marker.setColor(colorWheel.value);
     }
 })
+
+for (const filtro of filtros) {
+    filtro.addEventListener('click', () => {
+        imagen.setImageData(ctx.getImageData(0, 0, canvas.width, canvas.height));
+        switch(filtro.value) {
+            case 'escalaGrises': {
+                let escalaGrises = new EscalaGrises(ctx, imagen.getImageData(), canvas.width, canvas.height);
+                escalaGrises.aplicarFiltro();
+            };break;
+        }
+    });
+}
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

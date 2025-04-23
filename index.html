@@ -43,12 +43,12 @@
             <aside class='aside'>
                 <h2>Filtros</h2>
                 <ul class='lista-filtros'>
-                    <li><button type='button' class='filtros'>Blanco y negro</button></li>
-                    <li><button type='button' class='filtros'>Negativo</button></li>
-                    <li><button type='button' class='filtros'>Brillo</button></li>
-                    <li><button type='button' class='filtros'>Sepia</button></li>
-                    <li><button type='button' class='filtros'>Sobel</button></li>
-                    <li><button type='button' class='filtros'>Blur</button></li>
+                    <li><button value='escalaGrises' type='button' id='escalaGrises' class='filtros'>Blanco y negro</button></li>
+                    <li><button value='negativo' type='button' class='filtros'>Negativo</button></li>
+                    <li><button value='brillo' type='button' class='filtros'>Brillo</button></li>
+                    <li><button value='sepia' type='button' class='filtros'>Sepia</button></li>
+                    <li><button value='sobel' type='button' class='filtros'>Sobel</button></li>
+                    <li><button value='blur' type='button' class='filtros'>Blur</button></li>
                 </ul>
             </aside>
             <div class='center'>
@@ -57,6 +57,8 @@
         </div>
     </main>
     <script src="JS/Imagen.js"></script>
+    <script src="JS/Filtros/FiltroSimple.js"></script>
+    <script src='JS/Filtros/EscalaGrises.js'></script>
     <script src="JS/Tools/Eraser.js"></script>
     <script src="JS/Tools/Pen.js"></script>
     <script src="JS/Tools/Marker.js"></script>
