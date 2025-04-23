@@ -112,6 +112,10 @@ for (const filtro of filtros) {
                 let brillo = new Brillo(ctx, imagen.getImageData(), canvas.width, canvas.height);
                 brillo.aplicarFiltro();
             };break;
+            case 'sepia': {
+                let sepia = new Sepia(ctx, imagen.getImageData(), canvas.width, canvas.height);
+                sepia.aplicarFiltro();
+            };break;
         }
     });
 }
