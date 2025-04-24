@@ -4,7 +4,14 @@ class Imagen {
         this.width = width;
         this.height = height;
         this.cargada = false;
-        this.imageData = null;
+    }
+
+    setCargada(cargada) {
+        this.cargada = cargada;
+    }
+
+    getCargada() {
+        return this.cargada;
     }
 
     cargarImagen(file) {
@@ -27,6 +34,7 @@ class Imagen {
             }
 
             ctx.drawImage(this, 0, 0, resWidth, resHeight);
+            this.cargada = true;
         }
     }
 }

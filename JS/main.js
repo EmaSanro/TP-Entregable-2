@@ -68,7 +68,9 @@ canvas.addEventListener('mouseleave', () => {
 // CUANDO EL INPUT CAMBIE SE QUEDARA CON EL PRIMER ARCHVIO SELECCIONADO 
 inputFile.addEventListener('change', (e) => {
     limpiarCanvas();
+    imagen = new Imagen(ctx, canvas.width, canvas.height);
     imagen.cargarImagen(e.target.files[0]);
+    imagen.setCargada(true);
 });
 
 // CAMBIAR EL SIZE DE LA GOMA 
@@ -102,33 +104,36 @@ colorWheel.addEventListener('change', () => {
 // DEPENDIENDO QUE BOTON SE TOQUE SE LLAMARA A ALGUNO DE LOS FILTROS Y SE APLICARA AL CANVAS
 for (const filtro of filtros) {
     filtro.addEventListener('click', () => {
-        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        switch(filtro.value) {
-            case 'escalaGrises': {
-                let escalaGrises = new EscalaGrises(ctx, imageData, canvas.width, canvas.height);
-                escalaGrises.aplicarFiltro();
-            };break;
-            case 'negativo': {
-                let negativo = new Negativo(ctx, imageData, canvas.width, canvas.height);
-                negativo.aplicarFiltro();
-            };break;
-            case 'brillo': {
-                let brillo = new Brillo(ctx, imageData, canvas.width, canvas.height);
-                brillo.aplicarFiltro();
-            };break;
-            case 'sepia': {
-                let sepia = new Sepia(ctx, imageData, canvas.width, canvas.height);
-                sepia.aplicarFiltro();
-            };break;
-            case 'sobel': {
-                let sobel = new Sobel(ctx, imageData, canvas.width, canvas.height);
-                sobel.aplicarFiltro();
-            };break;
-            case 'blur': {
-                let blur = new Blur(ctx, imageData, canvas.width, canvas.height);
-                blur.aplicarFiltro();
-            };break;
+        if(imagen != null && imagen.getCargada()) {
+            let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            switch(filtro.value) {
+                case 'escalaGrises': {
+                    let escalaGrises = new EscalaGrises(ctx, imageData, canvas.width, canvas.height);
+                    escalaGrises.aplicarFiltro();
+                };break;
+                case 'negativo': {
+                    let negativo = new Negativo(ctx, imageData, canvas.width, canvas.height);
+                    negativo.aplicarFiltro();
+                };break;
+                case 'brillo': {
+                    let brillo = new Brillo(ctx, imageData, canvas.width, canvas.height);
+                    brillo.aplicarFiltro();
+                };break;
+                case 'sepia': {
+                    let sepia = new Sepia(ctx, imageData, canvas.width, canvas.height);
+                    sepia.aplicarFiltro();
+                };break;
+                case 'sobel': {
+                    let sobel = new Sobel(ctx, imageData, canvas.width, canvas.height);
+                    sobel.aplicarFiltro();
+                };break;
+                case 'blur': {
+                    let blur = new Blur(ctx, imageData, canvas.width, canvas.height);
+                    blur.aplicarFiltro();
+                };break;
+            }
         }
+
     });
 }
 
@@ -140,7 +145,6 @@ for (const filtro of filtros) {
 
 function main() {
     dibujarCanvas();
-    imagen = new Imagen(ctx, canvas.width, canvas.height);
 }
 
 function dibujarCanvas() {
@@ -225,6 +229,7 @@ function guardar() {
 }
 
 function descartar() {
+    imagen = null;
     limpiarCanvas();
     inputFile.value = '';
 }
