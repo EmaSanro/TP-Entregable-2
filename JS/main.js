@@ -28,7 +28,7 @@ btnGuardar.addEventListener('click', guardar);
 btnPencil.addEventListener('click', crearLapiz); //AL CLICKEAR EN EL BOTON DEL LAPIZ, SE CREA EL OBJETO PARA EMPEZAR A DIBUJAR
 btnGoma.addEventListener('click', crearGoma); // AL CLICKEAR EN LA GOMA SE CREA EL OBJETO PARA BORRAR
 
-btnMarker.addEventListener('click', crearFibron);
+btnMarker.addEventListener('click', crearFibron); //AL CLICKEAR EN EL BOTON DEL FIBRON, SE CREA EL OBJETO PARA EMPEZAR A DIBUJAR
 
 // CUANDO SE PRESIONE EL MOUSE, SE CREARA UN LAPIZ
 canvas.addEventListener('mousedown', (e) => {
@@ -115,6 +115,10 @@ for (const filtro of filtros) {
             case 'sepia': {
                 let sepia = new Sepia(ctx, imageData, canvas.width, canvas.height);
                 sepia.aplicarFiltro();
+            };break;
+            case 'sobel': {
+                let sobel = new Sobel(ctx, imageData, canvas.width, canvas.height);
+                sobel.aplicarFiltro();
             };break;
             case 'blur': {
                 let blur = new Blur(ctx, imageData, canvas.width, canvas.height);
