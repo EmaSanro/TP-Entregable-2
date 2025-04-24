@@ -14,7 +14,7 @@ class Sobel extends FiltroComplejo {
         this.kernelSize = 3;
         this.gray = this.convertToGrayscale();
     }
-
+    // CONVIRTIENDO LA IMAGEN A ESCALA DE GRISES
     convertToGrayscale() {
         const gray = [];
         for (let i = 0; i < this.imageData.data.length; i += 4) {
@@ -34,9 +34,9 @@ class Sobel extends FiltroComplejo {
 
         for (let ky = -1; ky <= 1; ky++) {
             for (let kx = -1; kx <= 1; kx++) {
-                const valor = this.gray[(y + ky) * this.width + (x + kx)];
-                newX += valor * this.kernelX[ky + 1][kx + 1];
-                newY += valor * this.kernelY[ky + 1][kx + 1];
+                const valor = this.gray[(y + ky) * this.width + (x + kx)]; // ACCEDIENDO AL VALOR DE LA ESCALA DE GRISES
+                newX += valor * this.kernelX[ky + 1][kx + 1]; // SUMANDO EL NEWX AL VALOR DE LA ESCALA DE GRISES MULTIPLICADO POR EL KERNEL EN SU POSICION X,Y
+                newY += valor * this.kernelY[ky + 1][kx + 1]; // LO MISMO PARA EL NEWY
             }
         }
 

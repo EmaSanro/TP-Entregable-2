@@ -56,21 +56,22 @@ canvas.addEventListener('mousemove', (e) => {
     }
 })
 
-// UNA VEZ SUELTO EL CLICK SE DEJARA DE DIBUJAR Y SE DESTRUIRA EL LAPIZ
+// UNA VEZ SUELTO EL CLICK SE DEJARA DE DIBUJAR
 canvas.addEventListener('mouseup', () => {
     mouseDown = false;
 })
-
+// CUANDO SE SALGA DEL CANVAS, SE DEJARA DE DIBUJAR
 canvas.addEventListener('mouseleave', () => {
     mouseDown = false;
 })
 
-
+// CUANDO EL INPUT CAMBIE SE QUEDARA CON EL PRIMER ARCHVIO SELECCIONADO 
 inputFile.addEventListener('change', (e) => {
     limpiarCanvas();
     imagen.cargarImagen(e.target.files[0]);
 });
 
+// CAMBIAR EL SIZE DE LA GOMA 
 sizeGoma.addEventListener('change', () => {
     if(eraser == null) {
         crearGoma();
@@ -78,6 +79,7 @@ sizeGoma.addEventListener('change', () => {
     eraser.setSize(sizeGoma.value);
 })
 
+// CAMBIAR EL COLOR DEL LAPIZ O FIBRON MEDIANTE LOS BOTONES DE COLOR
 for (const color of colors) {
     color.addEventListener('click', () => {
         if(pencil != null) {
@@ -88,6 +90,7 @@ for (const color of colors) {
     });
 }
 
+// CAMBIAR EL COLOR DEL LAPIZ O FIBRON MEDIANTE EL INPUT DE COLOR 
 colorWheel.addEventListener('change', () => {
     if(pencil != null) {
         pencil.setColor(colorWheel.value);
@@ -96,6 +99,7 @@ colorWheel.addEventListener('change', () => {
     }
 })
 
+// DEPENDIENDO QUE BOTON SE TOQUE SE LLAMARA A ALGUNO DE LOS FILTROS Y SE APLICARA AL CANVAS
 for (const filtro of filtros) {
     filtro.addEventListener('click', () => {
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -143,6 +147,7 @@ function dibujarCanvas() {
     ctx.beginPath();
     ctx.strokeStyle = 'black';
     ctx.rect(0, 0, canvas.width, canvas.height);
+    ctx.lineWidth = 1;
     ctx.stroke();
     ctx.closePath();
 }
@@ -219,9 +224,9 @@ function guardar() {
     document.body.removeChild(link);
 }
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 function descartar() {
     limpiarCanvas();
     inputFile.value = '';
 }
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

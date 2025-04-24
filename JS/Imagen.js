@@ -8,7 +8,6 @@ class Imagen {
     }
 
     cargarImagen(file) {
-        // TERMINAR LA FUNCIONALIDAD DE CARGAR UNA IMAGEN Y DIBUJARLA
         let orgWidth = this.width;
         let orgHeight = this.height;
 
@@ -19,7 +18,7 @@ class Imagen {
         img.onload = function() {
             
             const aspectRatio = this.naturalWidth / this.naturalHeight;
-
+            // CORREGIENDO LA RELACION DE ASPECTO ASI SE ADAPTA AL SIZE DEL CANVAS
             let resWidth = orgWidth;
             let resHeight = resWidth / aspectRatio; 
             if(resHeight > orgHeight) {
