@@ -98,23 +98,27 @@ colorWheel.addEventListener('change', () => {
 
 for (const filtro of filtros) {
     filtro.addEventListener('click', () => {
-        imagen.setImageData(ctx.getImageData(0, 0, canvas.width, canvas.height));
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         switch(filtro.value) {
             case 'escalaGrises': {
-                let escalaGrises = new EscalaGrises(ctx, imagen.getImageData(), canvas.width, canvas.height);
+                let escalaGrises = new EscalaGrises(ctx, imageData, canvas.width, canvas.height);
                 escalaGrises.aplicarFiltro();
             };break;
             case 'negativo': {
-                let negativo = new Negativo(ctx, imagen.getImageData(), canvas.width, canvas.height);
+                let negativo = new Negativo(ctx, imageData, canvas.width, canvas.height);
                 negativo.aplicarFiltro();
             };break;
             case 'brillo': {
-                let brillo = new Brillo(ctx, imagen.getImageData(), canvas.width, canvas.height);
+                let brillo = new Brillo(ctx, imageData, canvas.width, canvas.height);
                 brillo.aplicarFiltro();
             };break;
             case 'sepia': {
-                let sepia = new Sepia(ctx, imagen.getImageData(), canvas.width, canvas.height);
+                let sepia = new Sepia(ctx, imageData, canvas.width, canvas.height);
                 sepia.aplicarFiltro();
+            };break;
+            case 'blur': {
+                let blur = new Blur(ctx, imageData, canvas.width, canvas.height);
+                blur.aplicarFiltro();
             };break;
         }
     });
